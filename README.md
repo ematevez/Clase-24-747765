@@ -3,7 +3,7 @@ Clase-Login-Registro-Avatar
 
 ### Hi there 👋
 
-<!--
+
 **ematevez/ematevez** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
@@ -16,21 +16,11 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
--->
+
 
 # **HOLA SOY EMANUEL**
-## Comentario.
 
 
-
-
-<!--Aca es la imagen el href-> es el link donde quieren que valla y el src -> donde esta la imagen que van a poner //width = es el tamaño
-<p align="center"><a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://www.linkedin.com/in/emanuel-juli%C3%A1n-tevez/" alt="logo del proyecto"></a></p>-->
-
-
-## SOBRE MI
-- Soy un emprendedor fanatico de la robotica y la programacion y ***amigable*** con el medio ambiente.
-- Portfolio: https://portfolio-ematevez.netlify.app/
   
 <br>  
 
