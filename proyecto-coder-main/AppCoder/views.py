@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Profesor, Curso, Estudiante
-from .forms import ProfesorFormulario, UserRegisterForm
+from .forms import ProfesorFormulario, UserRegisterForm, UserEditForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 
@@ -74,6 +74,7 @@ def resultado_profes(request):
 #HACIENDO EL CRUD de Profes --- CLÁSICO
 
 #Read
+@login_required
 def ver_profes(request):
 
     todos = Profesor.objects.all()
@@ -197,6 +198,37 @@ def register(request):
 
       return render(request,"AppCoder/register.html" ,  {"form":form})
 
+
+
+# Vista de editar el perfil
+@login_required
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+
+            usuario.save()
+
+            return render(request, "AppCoder/inicio.html")
+
+    else:
+
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+
+    return render(request, "AppCoder/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
 
 
