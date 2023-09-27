@@ -5,10 +5,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Profesor, Curso, Estudiante
-from .forms import ProfesorFormulario, UserRegisterForm, UserEditForm
+from .models import Profesor, Curso, Estudiante, Avatar
+from .forms import ProfesorFormulario, UserRegisterForm, UserEditForm, AvatarFormulario
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 """
@@ -231,6 +232,22 @@ def editarPerfil(request):
     return render(request, "AppCoder/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
 
+@login_required
+def agregarAvatar(request):
+    if request.method == 'POST':
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+        if miFormulario.is_valid():
+            usuario = request.user
+            imagen = miFormulario.cleaned_data['imagen']
+            avatar = Avatar(user=usuario, imagen=imagen)
+            avatar.save()
+            # Redirigir a alguna página de éxito o realizar alguna otra acción
+            return render(request, "AppCoder/inicio.html")  # Asegúrate de reemplazar 'nombre_de_la_vista_de_exito' con la vista que desees
+
+    else:
+        miFormulario = AvatarFormulario()
+    
+    return render(request, "AppCoder/agregarAvatar.html", {"miFormulario": miFormulario})
 
 
 

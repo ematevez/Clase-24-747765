@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Avatar
 
 
 class UserRegisterForm(UserCreationForm):
@@ -31,4 +32,9 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['email', 'password1', 'password2', 'last_name', 'first_name', 'pais']
         
+
+class AvatarFormulario(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = '__all__'  # Esto incluirá todos los campos del modelo Avatar en el formulario
 
